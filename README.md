@@ -1,5 +1,3 @@
-# Flask CRUD App
-
 ### Uruchomienie lokalnie
 
 1. Stwórz wirtualne środowisko i zainstaluj wymagania:
