@@ -62,7 +62,7 @@ def dashboard():
         db.session.commit()
         flash('Notes saved.', 'success')
     crypto_data = get_crypto_data()
-    return render_template('dashboard.html', form=form, notes=current_user.notes or '', crypto_data=crypto_data)
+    return render_template('dashboard.html', form=form, notes=current_user.notes or '', crypto=crypto_data)
 
 
 @app.route('/delete_notes')
