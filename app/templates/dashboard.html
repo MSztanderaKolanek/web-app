@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head><title>Dashboard</title></head>
+<body>
+    <h2>Witaj, {{ current_user.username }}</h2>
+
+    <h3>Kursy kryptowalut:</h3>
+    {% if crypto.error %}
+        <p>{{ crypto.error }}</p>
+    {% else %}
+        <p>Bitcoin: {{ crypto['bitcoin']['usd'] }} USD</p>
+        <p>Ethereum: {{ crypto['ethereum']['usd'] }} USD</p>
+    {% endif %}
+
+    <form method="post">
+        {{ form.hidden_tag() }}
+        {{ form.notes.label }}<br>
+        {{ form.notes(rows=5, cols=40, value=notes) }}<br>
+        {{ form.submit }}
+    </form>
+
+    <a href="{{ url_for('delete_note') }}">🗑️ Usuń notatkę</a><br>
+    <a href="{{ url_for('logout') }}">🔒 Wyloguj</a>
+</body>
+</html>
