@@ -23,5 +23,5 @@ flask db upgrade
 4. Uruchom serwer:
 
 ```
-python run.py
+python app.py
 ```
