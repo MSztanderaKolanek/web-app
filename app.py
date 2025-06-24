@@ -6,10 +6,11 @@ from forms import RegisterForm, LoginForm, NoteForm
 from models import db, User
 import requests
 import json
+import os
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'your_secret_key'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://your_user:your_password@your_host:5432/your_dbname'
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://web_app_user:DSimH1jlnDU6QOtx5d4cbyf4U3tKe7SH@dpg-d1dd2ap5pdvs73am2cng-a/web_app_db_c1ry'
 db.init_app(app)
 
 login_manager = LoginManager()
