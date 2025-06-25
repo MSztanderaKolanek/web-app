@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, url_for, flash, request
+from flask import Flask, render_template, redirect, url_for, request
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -37,7 +37,6 @@ def register():
         new_user = User(username=form.username.data, password=hashed_pw)
         db.session.add(new_user)
         db.session.commit()
-        flash('Account created successfully!', 'success')
         return redirect(url_for('login'))
     return render_template('register.html', form=form)
 
@@ -50,7 +49,6 @@ def login():
         if user and check_password_hash(user.password, form.password.data):
             login_user(user)
             return redirect(url_for('dashboard'))
-        flash('Invalid username or password', 'danger')
     return render_template('login.html', form=form)
 
 
@@ -61,7 +59,6 @@ def dashboard():
     if form.validate_on_submit():
         current_user.notes = form.notes.data
         db.session.commit()
-        flash('Notes saved.', 'success')
     crypto_data = get_crypto_data()
     return render_template('dashboard.html', form=form, notes=current_user.notes or '', crypto=crypto_data)
 
@@ -71,7 +68,6 @@ def dashboard():
 def delete_notes():
     current_user.notes = ''
     db.session.commit()
-    flash('Notes deleted.', 'info')
     return redirect(url_for('dashboard'))
 
 
@@ -86,7 +82,6 @@ def get_crypto_data():
     try:
         response = requests.get('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum&vs_currencies=usd')
         data = response.json()
-
         if 'bitcoin' in data and 'ethereum' in data:
             return data
         else:
