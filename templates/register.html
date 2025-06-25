@@ -10,8 +10,10 @@
         <h1>Rejestracja</h1>
         <form method="post">
             {{ form.hidden_tag() }}
-            {{ form.username.label }} {{ form.username }}<br>
-            {{ form.password.label }} {{ form.password }}<br>
+            {{ form.username.label }}<br>
+            {{ form.username }}<br>
+            {{ form.password.label }}<br>
+            {{ form.password }}<br>
             {{ form.submit }}
         </form>
         <a href="{{ url_for('login') }}">Masz już konto? Zaloguj się!</a>
