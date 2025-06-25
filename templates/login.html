@@ -2,13 +2,15 @@
 <html>
 <head><title>Logowanie</title></head>
 <body>
-    <h2>Logowanie</h2>
-    <form method="post">
-        {{ form.hidden_tag() }}
-        {{ form.username.label }} {{ form.username }}<br>
-        {{ form.password.label }} {{ form.password }}<br>
-        {{ form.submit }}
-    </form>
-    <a href="{{ url_for('register') }}">Nie masz konta? Zarejestruj się</a>
+    <div class="container">
+        <h1>Logowanie</h1>
+        <form method="post">
+            {{ form.hidden_tag() }}
+            {{ form.username.label }} {{ form.username }}<br>
+            {{ form.password.label }} {{ form.password }}<br>
+            {{ form.submit }}
+        </form>
+        <a href="{{ url_for('register') }}">Nie masz konta? Zarejestruj się!</a>
+    </div>
 </body>
 </html>

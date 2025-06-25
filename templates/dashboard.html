@@ -1,27 +1,33 @@
 <!DOCTYPE html>
 <html>
-<head><title>Dashboard</title></head>
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
 <body>
-    <h2>Witaj, {{ current_user.username }}</h2>
+    <div class="container">
+        <h1>Witaj, {{ current_user.username }}</h1>
 
-    <h3>Kursy kryptowalut:</h3>
-    {% if crypto.error %}
-        <p>{{ crypto.error }}</p>
-    {% else %}
-        <p>Bitcoin: {{ crypto['bitcoin']['usd'] }} USD</p>
-        <p>Ethereum: {{ crypto['ethereum']['usd'] }} USD</p>
-    {% endif %}
+        <h2>Kursy kryptowalut:</h2>
+        {% if crypto.error %}
+            <p>{{ crypto.error }}</p>
+        {% else %}
+            <p>Bitcoin: {{ crypto['bitcoin']['usd'] }} USD</p>
+            <p>Ethereum: {{ crypto['ethereum']['usd'] }} USD</p>
+        {% endif %}
 
-    <form method="post">
-        {{ form.hidden_tag() }}
-        <div>
-            {{ form.notes.label }}<br>
-            {{ form.notes(rows=5, cols=40) }}<br>
-        </div>
-        {{ form.submit }}
-    </form>
+        <form method="post">
+            {{ form.hidden_tag() }}
+            <div>
+                {{ form.notes.label }}<br>
+                {{ form.notes(rows=5, cols=40) }}<br>
+            </div>
+            {{ form.submit }}
+        </form>
 
-    <a href="{{ url_for('delete_notes') }}">Usuń notatkę</a><br>
-    <a href="{{ url_for('logout') }}">Wyloguj</a>
+        <a href="{{ url_for('delete_notes') }}">Usuń notatkę</a><br>
+        <a href="{{ url_for('logout') }}">Wyloguj</a>
+    </div>
 </body>
 </html>
