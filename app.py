@@ -82,13 +82,16 @@ def logout():
 
 
 def get_crypto_data():
-    url = 'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum&vs_currencies=usd'
     try:
-        response = requests.get(url)
+        response = requests.get('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum&vs_currencies=usd')
         data = response.json()
-        return data
+
+        if 'bitcoin' in data and 'ethereum' in data:
+            return data
+        else:
+            return {'error': 'Brakuje danych dla bitcoin lub ethereum'}
     except:
-        return {'bitcoin': {'usd': 'N/A'}, 'ethereum': {'usd': 'N/A'}}
+        return {'error': 'Nie udało się pobrać danych z API'}
 
 
 if __name__ == '__main__':
