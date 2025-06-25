@@ -56,7 +56,7 @@ def login():
 @app.route('/dashboard', methods=['GET', 'POST'])
 @login_required
 def dashboard():
-    form = NoteForm()
+    form = NoteForm(notes=current_user.notes)
     if form.validate_on_submit():
         current_user.notes = form.notes.data
         db.session.commit()

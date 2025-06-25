@@ -14,8 +14,10 @@
 
     <form method="post">
         {{ form.hidden_tag() }}
-        {{ form.notes.label }}<br>
-        {{ form.notes(rows=5, cols=40, value=notes) }}<br>
+        <div>
+            {{ form.notes.label }}<br>
+            {{ form.notes(rows=5, cols=40) }}<br>
+        </div>
         {{ form.submit }}
     </form>
 
