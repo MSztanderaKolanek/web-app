@@ -11,6 +11,7 @@ import os
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://web_app_user:DSimH1jlnDU6QOtx5d4cbyf4U3tKe7SH@dpg-d1dd2ap5pdvs73am2cng-a/web_app_db_c1ry'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.init_app(app)
 
 login_manager = LoginManager()
